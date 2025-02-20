@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+@layer components{
+  input{
+    @apply w-full p-2 border border-gray-400 rounded-lg focus:outline-none;
+  }
+  label{
+    @apply  text-gray-600 text-lg font-bold;
+
+  }
+}
