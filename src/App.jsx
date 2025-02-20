@@ -6,6 +6,7 @@ import Header from './components/Header'
 
 function App() {
 
+  const[allMeme,setAllMeme] = useState([])
   const[meme,setMeme] = useState({
     topText: '',
     bottomText: '',
@@ -16,7 +17,8 @@ function App() {
     console.log('inside')
     const response = await fetch('https://api.imgflip.com/get_memes')
     const data = await response.json()
-    console.log(data.data.memes[    Math.floor(Math.random() * data.data.memes.length)    ].url)
+    setAllMeme(data.data.memes)
+    // console.log(data.data.memes[    Math.floor(Math.random() * data.data.memes.length)    ].url)
     // setMeme(prev=>({
     //   ...prev,
     //   randomImage:data.data.memes[    Math.floor(Math.random() * data.data.memes.length)    ].url
@@ -29,7 +31,17 @@ function App() {
   useEffect(()=>{
 
     fetchMemeImage()
+    console.log('fetching all data')
   },[])
+
+  const getRandomMeme=(e)=>{
+    e.preventDefault()
+    setMeme(prev=>({
+      ...prev,
+      randomImage:allMeme[    Math.floor(Math.random() * allMeme.length)    ].url
+    }))
+
+  }
 
   return (
     <>
@@ -61,7 +73,8 @@ function App() {
 </div>
       </div>
 <button
-onClick={(e)=>fetchMemeImage(e)}
+onClick={getRandomMeme}
+// onClick={(e)=>fetchMemeImage(e)}
 className=' w-full md:w-sm lg:w-1/2 mt-4 mx-auto block bg-pink-500 hover:bg-pink-700 text-white font-bold py-2  rounded' >GET A NEW MEME IMAGE</button>
       </form>
     </div>
