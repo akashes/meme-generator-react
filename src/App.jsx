@@ -7,14 +7,15 @@ import Header from './components/Header'
 function App() {
 
   const[allMeme,setAllMeme] = useState([])
+
   const[meme,setMeme] = useState({
     topText: '',
     bottomText: '',
     randomImage: ''
   })
+
   const fetchMemeImage=async(e)=>{
     e && e.preventDefault()
-    console.log('inside')
     const response = await fetch('https://api.imgflip.com/get_memes')
     const data = await response.json()
     setAllMeme(data.data.memes)
@@ -28,10 +29,10 @@ function App() {
       randomImage:data.data.memes[    Math.floor(Math.random() * data.data.memes.length)    ].url
     }))
   }
+
   useEffect(()=>{
 
     fetchMemeImage()
-    console.log('fetching all data')
   },[])
 
   const getRandomMeme=(e)=>{
