@@ -19,11 +19,7 @@ function App() {
     const response = await fetch('https://api.imgflip.com/get_memes')
     const data = await response.json()
     setAllMeme(data.data.memes)
-    // console.log(data.data.memes[    Math.floor(Math.random() * data.data.memes.length)    ].url)
-    // setMeme(prev=>({
-    //   ...prev,
-    //   randomImage:data.data.memes[    Math.floor(Math.random() * data.data.memes.length)    ].url
-    // }))
+  
     setMeme(({
       ...meme,
       randomImage:data.data.memes[    Math.floor(Math.random() * data.data.memes.length)    ].url
@@ -75,7 +71,7 @@ function App() {
       </div>
 <button
 onClick={getRandomMeme}
-// onClick={(e)=>fetchMemeImage(e)}
+aria-label='click to get a new meme image'
 className=' w-full md:w-sm lg:w-1/2 mt-4 mx-auto block bg-pink-500 hover:bg-pink-700 text-white font-bold py-2  rounded' >GET A NEW MEME IMAGE</button>
       </form>
     </div>
